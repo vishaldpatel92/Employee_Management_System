@@ -53,7 +53,7 @@ public class EmployeeDAO {
 				Employee.setEmployeeAddress(rs.getString("Address"));
 				Employee.setEmployeeGender(rs.getInt("Gender"));
 				Employee.setEmployeeSalary(rs.getInt("Salary"));
-				Employee.setEmployeeDOB(rs.getString("Category"));
+				Employee.setEmployeeDOB(rs.getString("Birthdate"));
 				Employees.add(Employee);
 			}
 			rs.close();
@@ -80,7 +80,7 @@ public class EmployeeDAO {
 				Employee.setEmployeeAddress(rs.getString("Address"));
 				Employee.setEmployeeGender(rs.getInt("Gender"));
 				Employee.setEmployeeSalary(rs.getInt("Salary"));
-				Employee.setEmployeeDOB(rs.getString("DOB"));
+				Employee.setEmployeeDOB(rs.getString("Birthdate"));
 			}
 			rs.close();
 			stmt.close();

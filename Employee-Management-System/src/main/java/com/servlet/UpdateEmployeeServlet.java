@@ -22,8 +22,8 @@ public class UpdateEmployeeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String E_Name = req.getParameter("E_Name");
 		String E_Address = req.getParameter("E_Address");
-		int E_Gender = req.getIntHeader("E_Gender");
-		int E_Salary = req.getIntHeader("E_Salary");
+		Integer E_Gender = Integer.parseInt(req.getParameter("E_Gender"));
+		Integer E_Salary = Integer.parseInt(req.getParameter("E_Salary"));
 		String E_DOB = req.getParameter("E_DOB");
 		int E_ID = Integer.parseInt(req.getParameter("E_ID"));
 		Employee Employee = new Employee(E_ID, E_Name, E_Address, E_Gender, E_Salary, E_DOB);

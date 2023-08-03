@@ -1,3 +1,7 @@
+<%@page import="com.conn.DBConnect"%>
+<%@page import="com.dao.EmployeeDAO"%>
+<%@page import="com.entity.Employee"%>
+<%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,19 +10,21 @@
 <meta charset="UTF-8">
 <title>Employee Management System</title>
 <%@include file="CommonCSS.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false"%>
 </head>
 <body class="bg-light">
 <%@include file="Navbar.jsp"%>
 <h1 class="text-center">Welcome to EMS</h1>
 	<div class="container p-5">
-		<%-- <c:if test="${not empty SuccessMsg}">
+		<c:if test="${not empty SuccessMsg}">
 			<p class="text-center text-success">${SuccessMsg}</p>
 			<c:remove var="SuccessMsg" />
 		</c:if>
 		<c:if test="${not empty Error}">
 			<p class="text-center text-success">${ErrorMsg}</p>
 			<c:remove var="ErrorMsg" />
-		</c:if> --%>
+		</c:if>
 		<table class="table">
 			<thead>
 				<tr>
@@ -29,7 +35,7 @@
 					<th scope="col">Date of Birth</th>
 				</tr>
 			</thead>
-			<%-- <tbody>
+			<tbody>
 				<%
 				EmployeeDAO dao = new EmployeeDAO(DBConnect.getConn());
 				List<Employee> list = dao.getAllEmployees();
@@ -37,21 +43,26 @@
 				%>
 				<tr>
 					<th scope="row"><%=e.getEmployeeName()%></th>
-					<td><%=e.getEmployeeStartDate()%></td>
-					<td><%=e.getEmployeeEndDate()%></td>
-					<td><%=e.getEmployeeLocation()%></td>
-					<td><%=e.getEmployeeCategory()%></td>
-					<td><%=e.getEmployeeDescription()%></td>
+					<td><%=e.getEmployeeAddress()%></td>
+					<td><%=e.getEmployeeGender()==1 ? "Male" : "Female" %> </td>
+					<td><%=e.getEmployeeSalary()%></td>
+					<td><%=e.getEmployeeDOB()%></td>
 					<td><a href="UpdateEmployee.jsp?id=<%=e.getEmployeeID()%>"
 						class="btn btn-sm btn-primary">Edit</a> <a
 						href="DeleteEmployee?id=<%=e.getEmployeeID()%>"
-						class="btn btn-sm btn-danger ms-1">Delete</a></td>
+						class="btn btn-sm btn-danger ms-1" onclick='return  checkDelete()'>Delete</a></td>
 				</tr>
 				<%
 				}
 				%>
-			</tbody> --%>
+			</tbody>
 		</table>
 	</div>
+	<script>
+		function checkDelete()
+		{
+			confirm("Are you sure you want to delete this data?");
+		}
+	</script>
 </body>
 </html>
